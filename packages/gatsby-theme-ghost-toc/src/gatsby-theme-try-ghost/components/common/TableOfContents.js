@@ -14,6 +14,9 @@ import {
     TocLink,
 } from '../../../components/common/TableOfContentStyles'
 
+import strings from './strings.json';
+const { tocTitle } = strings;
+
 const getHeadingIds = (toc, traverseFullDepth = true, maxDepth, recursionDepth = 1) => {
     const idList = []
 
@@ -71,7 +74,7 @@ const TableOfContents = ({ toc, url, maxDepth = 2 }) => {
             <TocAside>
                 <nav>
                     <TocTitle>
-                        Table of Contents
+                        {tocTitle}
                     </TocTitle>
                     <TocList>
                         {createItems(toc, url, 1, theme.maxDepth || maxDepth, activeHash, isDesktop)}

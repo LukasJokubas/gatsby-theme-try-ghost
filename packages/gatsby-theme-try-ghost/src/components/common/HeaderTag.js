@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 
 import { SiteNav, HeaderBackground } from '.'
 
+import strings from './strings.json';
+const { tagPostsCounterLabel, singlePostLabel, multiplePostsLabel } = strings;
+
 const HeaderTag = ({ tag, numberOfPosts }) => (
     <header className="site-archive-header">
         <div className="outer site-nav-main">
@@ -15,7 +18,7 @@ const HeaderTag = ({ tag, numberOfPosts }) => (
                 <h1 className="site-title">{tag.name}</h1>
                 <h2 className="site-description">
                     {tag.description ||
-                        `A collection of ${numberOfPosts > 0 && (numberOfPosts === 1 ? `1 post` : `${numberOfPosts} posts`) || `posts`}`
+                        `${tagPostsCounterLabel} ${numberOfPosts > 0 && (numberOfPosts === 1 ? `${singlePostLabel}` : `${numberOfPosts} ${multiplePostsLabel}`) || `${multiplePostsLabel}`}`
                     }
                 </h2>
             </div>

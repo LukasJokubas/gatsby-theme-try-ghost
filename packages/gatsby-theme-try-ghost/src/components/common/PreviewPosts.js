@@ -8,6 +8,15 @@ import { readingTime as readingTimeHelper } from '@tryghost/helpers'
 import { resolveUrl } from '../../utils/routing'
 import useOptions from '../../utils/use-options'
 
+import strings from './strings.json';
+const {
+  moreInLabel,
+  singlePostLabel,
+  multiplePostsLabel,
+  seeAllLabel,
+  noPostsLabel
+} = strings;
+
 const PreviewPosts = ({ posts, primaryTagCount, prev, next }) => {
     const { basePath } = useOptions()
     const primaryTag = posts && posts[0] && posts[0].node && posts[0].node.primary_tag
@@ -20,7 +29,7 @@ const PreviewPosts = ({ posts, primaryTagCount, prev, next }) => {
                     { 0 < posts.length &&
                         <article className="read-next-card">
                             <header className="read-next-card-header">
-                                <h3><span>More in</span> <Link to={url}>{primaryTag.name}</Link></h3>
+                                <h3><span>{moreInLabel}</span> <Link to={url}>{primaryTag.name}</Link></h3>
                             </header>
                             <div className="read-next-card-content">
                                 <ul>
@@ -36,7 +45,7 @@ const PreviewPosts = ({ posts, primaryTagCount, prev, next }) => {
                             </div>
                             <footer className="read-next-card-footer">
                                 <Link to={url}>
-                                    {primaryTagCount > 0 && (primaryTagCount === 1 ? `1 post` : `See all ${primaryTagCount} posts`) || `No posts`} →
+                                    {primaryTagCount > 0 && (primaryTagCount === 1 ? `${singlePostLabel}` : `${seeAllLabel} ${primaryTagCount} ${multiplePostsLabel}`) || `${noPostsLabel}`} →
                                 </Link>
                             </footer>
                         </article>
